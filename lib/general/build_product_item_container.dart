@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
+// Product model that user will see
 class BuildProductItemContainer extends StatelessWidget {
   const BuildProductItemContainer({
     Key? key,

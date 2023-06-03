@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// Custom text field where user will enter data
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
     Key? key,

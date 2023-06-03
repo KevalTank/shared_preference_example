@@ -1,3 +1,4 @@
+// Product model that contains following fields
 class ProductModel {
   const ProductModel({
     required this.id,

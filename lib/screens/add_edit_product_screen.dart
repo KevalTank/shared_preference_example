@@ -33,6 +33,8 @@ class _AddEditProductScreenState extends State<AddEditProductScreen> {
   }
 
   void _loadFields() {
+    // Check if it is going to edit or not,
+    // If it is going to edit then load the fields
     if (widget.productModel != null) {
       _productNameController.text = widget.productModel!.productName;
       _productDescriptionController.text =
@@ -44,12 +46,14 @@ class _AddEditProductScreenState extends State<AddEditProductScreen> {
   Widget build(BuildContext context) {
     return BlocListener<ProductBloc, ProductState>(
       listener: (context, state) {
+        // If status id true for edit or create product then pop the screen
         if (state.status == Status.success) {
           Navigator.pop(context);
         }
       },
       child: Scaffold(
         appBar: AppBar(
+          // If load the product then show condition based text
           title:
               Text(widget.productModel != null ? 'EditProduct' : 'Add Product'),
         ),
@@ -72,6 +76,7 @@ class _AddEditProductScreenState extends State<AddEditProductScreen> {
                 const Spacer(flex: 3),
                 CustomButton(
                   onPressed: () {
+                    // If product is not empty then edit or else create new product
                     if (widget.productModel != null) {
                       var newProductModel = ProductModel(
                         id: widget.productModel!.id,
@@ -86,6 +91,7 @@ class _AddEditProductScreenState extends State<AddEditProductScreen> {
                             ),
                           );
                     } else {
+                      // Create new product
                       context.read<ProductBloc>().add(
                             SaveProductDetailsRequested(
                               productName: _productNameController.text.trim(),
@@ -95,6 +101,7 @@ class _AddEditProductScreenState extends State<AddEditProductScreen> {
                           );
                     }
                   },
+                  // Show condition based text
                   buttonText: widget.productModel != null ? 'Edit' : 'Add',
                 ),
                 const Spacer(),

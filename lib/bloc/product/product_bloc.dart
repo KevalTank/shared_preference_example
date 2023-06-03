@@ -31,19 +31,24 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
     Emitter<ProductState> emit,
   ) async {
     emit(state.copyWith(status: Status.inProgress));
+    // Creating new product model
     final product = ProductModel(
       id: const Uuid().v4(),
       productName: event.productName,
       productDescription: event.productDescription,
       createdTime: DateTime.now(),
     );
+    // Save product to the shared preferences
     _helper.addProduct(productModel: product);
+    // Sort the saved the product and show it at the top
     _products.sort((a, b) => b.createdTime.compareTo(a.createdTime));
     showToast(message: 'Product added successfully');
-    emit(state.copyWith(
-      status: Status.success,
-      products: _products,
-    ));
+    emit(
+      state.copyWith(
+        status: Status.success,
+        products: _products,
+      ),
+    );
   }
 
   FutureOr<void> _onGetProductDetailsFromPreferencesRequested(
@@ -51,7 +56,9 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
     Emitter<ProductState> emit,
   ) async {
     emit(state.copyWith(status: Status.inProgress));
+    // Get the products from the shared preferences
     _products = await _helper.getProducts();
+    // Sort the products
     _products.sort((a, b) => b.createdTime.compareTo(a.createdTime));
     emit(state.copyWith(status: Status.success, products: _products));
   }
@@ -61,11 +68,14 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
     Emitter<ProductState> emit,
   ) async {
     emit(state.copyWith(status: Status.inProgress));
+    // Edit product
     await _helper.editProduct(
       productId: event.productModel.id,
       productModel: event.productModel,
     );
+    // Get the products
     _products = await _helper.getProducts();
+    // Sort the products
     _products.sort((a, b) => b.createdTime.compareTo(a.createdTime));
     showToast(message: 'Product edited successfully');
     emit(state.copyWith(status: Status.success, products: _products));

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// Unfocused wrapper which is used to un-focus the
 class UnFocusWrapper extends StatelessWidget {
   const UnFocusWrapper({
     Key? key,

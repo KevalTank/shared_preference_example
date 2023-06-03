@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// General widgets
 class UiUtils {
   UiUtils._();
 

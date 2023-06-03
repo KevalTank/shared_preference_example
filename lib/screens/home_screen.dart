@@ -16,6 +16,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
+    // Get products from the shared preferences
     context
         .read<ProductBloc>()
         .add(GetProductDetailsFromPreferencesRequested());
@@ -45,6 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
             previous.status != current.status ||
             previous.products != current.products,
         builder: (context, state) {
+          // Build UI for products
           return ListView.builder(
             itemCount: state.products.length,
             itemBuilder: (context, index) {
@@ -65,9 +67,10 @@ class _HomeScreenState extends State<HomeScreen> {
           );
         },
       ),
+      // Add product
       floatingActionButton: FloatingActionButton(
         onPressed: () => _navigateToAddProductScreen(context: context),
-        tooltip: 'Increment',
+        tooltip: 'Add Product',
         child: const Icon(Icons.add),
       ),
     );

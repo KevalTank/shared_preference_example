@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'theme_state.dart';
 
+// Theme related cubit that will change the theme and save theme to the preferences
 class ThemeCubit extends Cubit<ThemeState> {
   ThemeCubit({
     required this.helper,

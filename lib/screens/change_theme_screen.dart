@@ -18,6 +18,7 @@ class _ChangeThemeScreenState extends State<ChangeThemeScreen> {
   @override
   void initState() {
     super.initState();
+    // Initialize the theme cubit
     _themeCubit = BlocProvider.of<ThemeCubit>(context);
   }
 
@@ -37,24 +38,28 @@ class _ChangeThemeScreenState extends State<ChangeThemeScreen> {
               BuildColorContainer(
                 color: Colors.black,
                 onTap: () {
+                  // Change theme
                   _themeCubit.changeTheme(AppTheme.dark);
                 },
               ),
               BuildColorContainer(
                 color: Colors.red,
                 onTap: () {
+                  // Change theme
                   _themeCubit.changeTheme(AppTheme.red);
                 },
               ),
               BuildColorContainer(
                 color: Colors.green,
                 onTap: () {
+                  // Change theme
                   _themeCubit.changeTheme(AppTheme.green);
                 },
               ),
               BuildColorContainer(
                 color: Colors.yellow,
                 onTap: () {
+                  // Change theme
                   _themeCubit.changeTheme(AppTheme.yellow);
                 },
               ),
@@ -66,6 +71,8 @@ class _ChangeThemeScreenState extends State<ChangeThemeScreen> {
   }
 }
 
+// Build square colored box that will show user,
+// That user is going to the use this theme
 class BuildColorContainer extends StatelessWidget {
   const BuildColorContainer({
     Key? key,
